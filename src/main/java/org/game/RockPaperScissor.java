@@ -1,11 +1,13 @@
 package org.game;
 
+import org.game.classes.PopUpStyles;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RockPaperScissor extends JFrame implements ActionListener{
+public class RockPaperScissor extends JFrame implements ActionListener {
 
     //player buttons
     JButton rockButton, paperButton, scissorButton;
@@ -46,7 +48,7 @@ public class RockPaperScissor extends JFrame implements ActionListener{
         //player score label
         playerScoreLabel = new JLabel("Player: 0");
         playerScoreLabel.setBounds(0, 317, 450, 30);
-        playerScoreLabel.setFont(new Font("Arial", Font.BOLD,26));
+        playerScoreLabel.setFont(new Font("Arial", Font.BOLD, 26));
         playerScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(playerScoreLabel);
 
@@ -72,7 +74,7 @@ public class RockPaperScissor extends JFrame implements ActionListener{
         add(scissorButton);
     }
 
-    private void showDialog(String message){
+    private void showDialog(PopUpStyles message) {
         //box that show result & button "try again"
         JDialog resultDialog = new JDialog(this, "Result", true);
         resultDialog.setSize(227, 124);
@@ -80,14 +82,15 @@ public class RockPaperScissor extends JFrame implements ActionListener{
         resultDialog.setResizable(false);
 
         //message
-        JLabel resultLabel = new JLabel(message);
+        JLabel resultLabel = new JLabel(message.getText());
         resultLabel.setFont(new Font("Arial", Font.BOLD, 18));
         resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        resultLabel.setForeground(message.getColor());
         resultDialog.add(resultLabel, BorderLayout.CENTER);
 
         //try again button
         JButton tryAgainButton = new JButton("Try Again?");
-        tryAgainButton.addActionListener(new ActionListener(){
+        tryAgainButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 computerChoice.setText("?");
@@ -96,6 +99,7 @@ public class RockPaperScissor extends JFrame implements ActionListener{
                 resultDialog.dispose();
             }
         });
+
         resultDialog.add(tryAgainButton, BorderLayout.SOUTH);
         resultDialog.setLocationRelativeTo(this);
         resultDialog.setVisible(true);
@@ -107,7 +111,7 @@ public class RockPaperScissor extends JFrame implements ActionListener{
         String playerChoice = e.getActionCommand().toString();
 
         //play & show result
-        String result = rockPaperScissor.playRockPaperScissorLogic(playerChoice);
+        PopUpStyles result = rockPaperScissor.playRockPaperScissorLogic(playerChoice);
 
         //load computer choice
         computerChoice.setText(rockPaperScissor.getComputerChoice());

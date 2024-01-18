@@ -1,5 +1,8 @@
 package org.game;
 
+import org.game.classes.PopUpStyles;
+
+import java.awt.*;
 import java.util.Random;
 
 public class RockPaperScissorLogic {
@@ -32,43 +35,49 @@ public class RockPaperScissorLogic {
         random = new Random();
     }
 
-    public String playRockPaperScissorLogic(String playerChoice) {
+    public PopUpStyles playRockPaperScissorLogic(String playerChoice) {
         //generate computer choice
         computerChoice = computerChoices[random.nextInt(computerChoices.length)];
 
         //show game result
-        String result = null;
+        PopUpStyles result = new PopUpStyles(null, null);
 
         //game logic
         if (computerChoice.equals("Rock")) {
             if (playerChoice.equals("Paper")) {
-                result = "Player Wins";
+                result.setText("Player Wins");
+                result.setColor(Color.GREEN);
                 playerScore++;
             } else if (playerChoice.equals("Scissor")) {
-                result = "Computer Wins";
+                result.setText("Computer Wins");
+                result.setColor(Color.RED);
                 computerScore++;
             } else {
-                result = "Draw";
+                result.setText("Draw");
             }
         } else if (computerChoice.equals("Paper")) {
             if (playerChoice.equals("Scissor")) {
-                result = "Player Wins";
+                result.setText("Player Wins");
+                result.setColor(Color.GREEN);
                 playerScore++;
             } else if (playerChoice.equals("Rock")) {
-                result = "Computer Wins";
+                result.setText("Computer Wins");
+                result.setColor(Color.RED);
                 computerScore++;
             } else {
-                result = "Draw";
+                result.setText("Draw");
             }
         } else if(computerChoice.equals("Scissor")) {
                 if (playerChoice.equals("Rock")) {
-                    result = "Player Wins";
+                    result.setText("Player Wins");
+                    result.setColor(Color.GREEN);
                     playerScore++;
                 } else if (playerChoice.equals("Paper")) {
-                    result = "Computer Wins";
+                    result.setText("Computer Wins");
+                    result.setColor(Color.RED);
                     computerScore++;
                 } else {
-                    result = "Draw";
+                    result.setText("Draw");
                 }
             }
 
